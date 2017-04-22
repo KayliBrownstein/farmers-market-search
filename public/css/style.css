@@ -1,3 +1,72 @@
+@import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Open+Sans|Pacifico');
 .hidden {
   display: none;
 }
+
+.searchbarContainer {
+  padding: 70px;
+}
+.searchField {
+  width: 40%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+
+}
+.title {
+  /*margin-top: 290px;*/
+  padding-top: 300px;
+  text-align: center;
+  margin-left: auto;
+  margin-right:auto;
+  font-family: 'Pacifico', cursive;
+  /*font-weight: bold;*/
+  font-size: 62px;
+  color: #3bb194;
+}
+
+#resultsHeading {
+  padding-bottom: 60px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+  font-family: 'Pacifico', cursive;
+  font-size: 27px;
+  color: #966a37;
+}
+.resultTiles {
+  font-family: 'Open Sans', sans-serif;
+  text-align: center;
+  font-size: 18px;
+}
+#parallax {
+    /* The image used */
+    background-image: url('https://www.heritageprairiefarm.com/wp-content/uploads/2015/09/HeritagePrairieFarm38.jpg');
+
+    /* Full height */
+    height: 110%;
+    /*background-size: auto 100%;*/
+
+    /* Create the parallax scrolling effect */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.searchResults {
+  padding-top: 120px;
+  height:500px;
+  background-color: white;
+}
+
+.button.custom{
+  font-weight: 600;
+  font-family: 'Open Sans', sans-serif;
+  background-color: #60368a;
+  height: 38px;
+  letter-spacing: 1.5px;
+
+}
+/*font-family: 'Alfa Slab One', cursive;
+font-family: 'Pacifico', cursive;
+font-family: 'Open Sans', sans-serif;*/

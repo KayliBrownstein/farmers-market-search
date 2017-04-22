@@ -35,7 +35,7 @@ class App extends Component {
     }
   }
   handleHeader(event) {
-    if (this.state.resultsToggle === false) {
+    if (this.state.attributes.length > 0) {
       this.setState({
         resultsToggle: true
       })
@@ -78,7 +78,6 @@ class App extends Component {
     })
   }
 
-
   render() {
     let className;
     if (this.state.resultsToggle) {
@@ -97,8 +96,8 @@ class App extends Component {
     }
 
     return(
-      <div>
-        <h1>Say No to GMO!</h1>
+      <div id='parallax'>
+        <h1 className = 'title'>Farm Alarm</h1>
         {errorDiv}
         <div className='searchbarContainer row'>
           <SearchBar
@@ -108,7 +107,7 @@ class App extends Component {
           />
         </div>
 
-        <div className='resultsContainer'>
+        <div className='resultsContainer row'>
           <ResultsContainer
             className = {className}
             attributes={this.state.attributes}

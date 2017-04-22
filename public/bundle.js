@@ -19831,7 +19831,7 @@
 	  }, {
 	    key: 'handleHeader',
 	    value: function handleHeader(event) {
-	      if (this.state.resultsToggle === false) {
+	      if (this.state.attributes.length > 0) {
 	        this.setState({
 	          resultsToggle: true
 	        });
@@ -19906,11 +19906,11 @@
 
 	      return _react2.default.createElement(
 	        'div',
-	        null,
+	        { id: 'parallax' },
 	        _react2.default.createElement(
 	          'h1',
-	          null,
-	          'Say No to GMO!'
+	          { className: 'title' },
+	          'Farm Alarm'
 	        ),
 	        errorDiv,
 	        _react2.default.createElement(
@@ -19924,7 +19924,7 @@
 	        ),
 	        _react2.default.createElement(
 	          'div',
-	          { className: 'resultsContainer' },
+	          { className: 'resultsContainer row' },
 	          _react2.default.createElement(_ResultsContainer2.default, {
 	            className: className,
 	            attributes: this.state.attributes,
@@ -19958,18 +19958,22 @@
 
 	var SearchBar = function SearchBar(props) {
 	  return _react2.default.createElement(
-	    'form',
-	    { onSubmit: props.onSubmit },
-	    _react2.default.createElement('input', { className: 'zip-search',
-	      type: 'text',
-	      placeholder: 'Enter zip code here...',
-	      onChange: props.onChange,
-	      value: props.zip
-	    }),
-	    _react2.default.createElement('input', { className: 'search-button',
-	      type: 'submit',
-	      value: 'Search'
-	    })
+	    'div',
+	    { className: 'searchField' },
+	    _react2.default.createElement(
+	      'form',
+	      { onSubmit: props.onSubmit },
+	      _react2.default.createElement('input', { className: 'zip-search',
+	        type: 'text',
+	        placeholder: 'Enter zip code here...',
+	        onChange: props.onChange,
+	        value: props.zip
+	      }),
+	      _react2.default.createElement('input', { className: 'button custom',
+	        type: 'submit',
+	        value: 'Search'
+	      })
+	    )
 	  );
 	};
 	exports.default = SearchBar;
@@ -20008,7 +20012,7 @@
 	    { className: 'searchResults' },
 	    _react2.default.createElement(
 	      'h2',
-	      { className: props.className },
+	      { id: 'resultsHeading', className: props.className },
 	      'Markets Near ',
 	      props.place
 	    ),
@@ -20042,12 +20046,11 @@
 	var ResultTile = function ResultTile(props) {
 	  return _react2.default.createElement(
 	    "div",
-	    { className: "small-12 medium-6 large-4 columns" },
+	    { className: "resultTiles" },
 	    _react2.default.createElement(
 	      "p",
 	      null,
-	      props.marketname,
-	      " "
+	      props.marketname
 	    )
 	  );
 	};

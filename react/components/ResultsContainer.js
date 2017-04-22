@@ -14,7 +14,7 @@ const ResultsContainer = (props) => {
 
   return(
     <div className='searchResults'>
-      <h2 className= {props.className}>Markets Near {props.place}</h2>
+      <h2 id= 'resultsHeading' className= {props.className}>Markets Near {props.place}</h2>
       <div id='colorStrip' />
 
       <div className="row">
