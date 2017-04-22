@@ -19772,6 +19772,14 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _SearchBar = __webpack_require__(160);
+
+	var _SearchBar2 = _interopRequireDefault(_SearchBar);
+
+	var _ResultsContainer = __webpack_require__(161);
+
+	var _ResultsContainer2 = _interopRequireDefault(_ResultsContainer);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -19788,17 +19796,141 @@
 
 	    var _this = _possibleConstructorReturn(this, (App.__proto__ || Object.getPrototypeOf(App)).call(this, props));
 
-	    _this.state = {};
+	    _this.state = {
+	      attributes: [],
+	      zip: '',
+	      place: '',
+	      resultsToggle: false,
+	      errors: {},
+	      header: ''
+	    };
+	    _this.handleSearchChange = _this.handleSearchChange.bind(_this);
+	    _this.handleSearchSubmit = _this.handleSearchSubmit.bind(_this);
+	    _this.handleHeader = _this.handleHeader.bind(_this);
 	    return _this;
 	  }
 
 	  _createClass(App, [{
+	    key: 'validateZipChange',
+	    value: function validateZipChange(zip) {
+	      if (zip === '' || zip === ' ') {
+	        var newError = { zip: 'Zip should not be blank' };
+	        this.setState({ errors: Object.assign(this.state.errors, newError) });
+	        return false;
+	      } else if (!zip.match(/^\d{5}$/)) {
+	        var _newError = { zip: 'Zip should be 5 numbers' };
+	        this.setState({ errors: Object.assign(this.state.errors, _newError) });
+	        return false;
+	      } else {
+	        var errorState = this.state.errors;
+	        delete errorState.zip;
+	        this.setState({ errors: errorState });
+	        return true;
+	      }
+	    }
+	  }, {
+	    key: 'handleHeader',
+	    value: function handleHeader(event) {
+	      if (this.state.resultsToggle === false) {
+	        this.setState({
+	          resultsToggle: true
+	        });
+	      } else {
+	        this.setState({
+	          resultsToggle: false
+	        });
+	      }
+	    }
+	  }, {
+	    key: 'handleSearchChange',
+	    value: function handleSearchChange(event) {
+	      this.setState({ attributes: [] });
+	      this.setState({ zip: event.target.value });
+	      this.setState({ place: event.target.value });
+	      this.setState({ resultsToggle: false });
+	    }
+	  }, {
+	    key: 'handleClearForm',
+	    value: function handleClearForm(event) {
+	      this.setState({ zip: '' });
+	    }
+	  }, {
+	    key: 'handleSearchSubmit',
+	    value: function handleSearchSubmit(event) {
+	      var _this2 = this;
+
+	      event.preventDefault();
+	      this.validateZipChange(this.state.zip);
+	      fetch('http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=' + this.state.zip).then(function (response) {
+	        if (response.ok) {
+	          return response;
+	        } else {
+	          var errorMessage = response.status + ' (' + response.statusText + ')',
+	              error = new Error(errorMessage);
+	          throw error;
+	        }
+	      }).then(function (response) {
+	        return response.json();
+	      }).then(function (responseData) {
+	        _this2.setState({ attributes: responseData.results });
+	        _this2.handleClearForm();
+	        _this2.handleHeader();
+	      });
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
+	      var className = void 0;
+	      if (this.state.resultsToggle) {
+	        className = 'selected';
+	      } else {
+	        className = 'hidden';
+	      };
+
+	      var errorDiv = void 0;
+	      var errorItems = void 0;
+	      if (Object.keys(this.state.errors).length > 0) {
+	        errorItems = Object.values(this.state.errors).map(function (error) {
+	          return _react2.default.createElement(
+	            'li',
+	            { key: error },
+	            error
+	          );
+	        });
+	        errorDiv = _react2.default.createElement(
+	          'div',
+	          { className: 'callout alert' },
+	          errorItems
+	        );
+	      }
+
 	      return _react2.default.createElement(
-	        'h1',
+	        'div',
 	        null,
-	        'BOILERPLATE !'
+	        _react2.default.createElement(
+	          'h1',
+	          null,
+	          'Say No to GMO!'
+	        ),
+	        errorDiv,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'searchbarContainer row' },
+	          _react2.default.createElement(_SearchBar2.default, {
+	            onChange: this.handleSearchChange,
+	            zip: this.state.zip,
+	            onSubmit: this.handleSearchSubmit
+	          })
+	        ),
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'resultsContainer' },
+	          _react2.default.createElement(_ResultsContainer2.default, {
+	            className: className,
+	            attributes: this.state.attributes,
+	            place: this.state.place
+	          })
+	        )
 	      );
 	    }
 	  }]);
@@ -19807,6 +19939,120 @@
 	}(_react.Component);
 
 	exports.default = App;
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var SearchBar = function SearchBar(props) {
+	  return _react2.default.createElement(
+	    'form',
+	    { onSubmit: props.onSubmit },
+	    _react2.default.createElement('input', { className: 'zip-search',
+	      type: 'text',
+	      placeholder: 'Enter zip code here...',
+	      onChange: props.onChange,
+	      value: props.zip
+	    }),
+	    _react2.default.createElement('input', { className: 'search-button',
+	      type: 'submit',
+	      value: 'Search'
+	    })
+	  );
+	};
+	exports.default = SearchBar;
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _ResultTile = __webpack_require__(162);
+
+	var _ResultTile2 = _interopRequireDefault(_ResultTile);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ResultsContainer = function ResultsContainer(props) {
+	  var attributes = props.attributes.map(function (attribute) {
+	    return _react2.default.createElement(_ResultTile2.default, {
+	      key: attribute.id,
+	      id: attribute.id,
+	      marketname: attribute.marketname
+	    });
+	  });
+
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'searchResults' },
+	    _react2.default.createElement(
+	      'h2',
+	      { className: props.className },
+	      'Markets Near ',
+	      props.place
+	    ),
+	    _react2.default.createElement('div', { id: 'colorStrip' }),
+	    _react2.default.createElement(
+	      'div',
+	      { className: 'row' },
+	      attributes
+	    )
+	  );
+	};
+
+	exports.default = ResultsContainer;
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var ResultTile = function ResultTile(props) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "small-12 medium-6 large-4 columns" },
+	    _react2.default.createElement(
+	      "p",
+	      null,
+	      props.marketname,
+	      " "
+	    )
+	  );
+	};
+
+	exports.default = ResultTile;
 
 /***/ })
 /******/ ]);
