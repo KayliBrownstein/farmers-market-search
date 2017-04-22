@@ -1,7 +1,9 @@
 source 'https://rubygems.org'
 
 gem 'sinatra'
+gem 'heroku'
 gem 'sinatra-activerecord'
+gem "puma"
 
 group :development, :test do
   gem 'pry'
