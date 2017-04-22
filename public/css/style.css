@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Alfa+Slab+One|Open+Sans|Pacifico');
+
 .hidden {
   display: none;
 }
@@ -14,8 +15,7 @@
 
 }
 .title {
-  /*margin-top: 290px;*/
-  padding-top: 300px;
+  padding-top: 250px;
   text-align: center;
   margin-left: auto;
   margin-right:auto;
@@ -45,7 +45,7 @@
 
     /* Full height */
     height: 110%;
-    /*background-size: auto 100%;*/
+    /*background-size: 100%;*/
 
     /* Create the parallax scrolling effect */
     background-attachment: fixed;
@@ -55,12 +55,15 @@
 }
 .searchResults {
   padding-top: 120px;
-  height:500px;
+  height: 1200px;
+  width: 100%;
   background-color: white;
 }
 
 .button.custom{
   font-weight: 600;
+  width: 50%;
+
   font-family: 'Open Sans', sans-serif;
   background-color: #60368a;
   height: 38px;
