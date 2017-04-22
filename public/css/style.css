@@ -24,7 +24,7 @@
   /*font-weight: bold;*/
   font-size: 62px;
   color: #3bb194;
-  text-shadow: 3px 3px black;
+  text-shadow: 3px 3px #33605A;
 }
 
 #resultsHeading {
@@ -35,6 +35,7 @@
   font-family: 'Pacifico', cursive;
   font-size: 27px;
   color: #966a37;
+  text-shadow: 1px 1px #68462B;
 }
 .resultTiles {
   font-family: 'Open Sans', sans-serif;
@@ -59,7 +60,7 @@
   padding-top: 120px;
   height: 1200px;
   width: 100%;
-  background-color: white;
+  background-color: #F0F2EB;
 }
 
 .button.custom{
