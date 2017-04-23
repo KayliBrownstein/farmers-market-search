@@ -25860,7 +25860,7 @@
 	    ),
 	    _react2.default.createElement(
 	      'a',
-	      { href: props.googleLink },
+	      { target: '_blank', href: props.googleLink },
 	      'Google Maps'
 	    ),
 	    _react2.default.createElement(
