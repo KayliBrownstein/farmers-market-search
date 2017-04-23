@@ -25581,7 +25581,11 @@
 	          { className: 'title' },
 	          'Farm Alarm'
 	        ),
-	        errorDiv,
+	        _react2.default.createElement(
+	          'div',
+	          { className: 'errors' },
+	          errorDiv
+	        ),
 	        _react2.default.createElement(
 	          'div',
 	          { className: 'searchbarContainer row' },
@@ -25632,13 +25636,13 @@
 	    _react2.default.createElement(
 	      'form',
 	      { onSubmit: props.onSubmit },
-	      _react2.default.createElement('input', { className: 'zip-search',
+	      _react2.default.createElement('input', { className: 'field',
 	        type: 'text',
 	        placeholder: 'Enter zip code here...',
 	        onChange: props.onChange,
 	        value: props.zip
 	      }),
-	      _react2.default.createElement('input', { className: 'button custom',
+	      _react2.default.createElement('input', { id: 'search-button', className: 'button custom',
 	        type: 'submit',
 	        value: 'Search'
 	      })

@@ -99,7 +99,9 @@ class App extends Component {
     return(
       <div id='parallax'>
         <h1 className = 'title'>Farm Alarm</h1>
-        {errorDiv}
+        <div className='errors'>
+          {errorDiv}
+        </div>
         <div className='searchbarContainer row'>
           <SearchBar
             onChange={this.handleSearchChange}

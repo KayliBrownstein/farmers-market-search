@@ -69,12 +69,57 @@
 .button.custom{
   font-weight: 600;
   width: 50%;
-
   font-family: 'Open Sans', sans-serif;
   background-color: #60368a;
   height: 38px;
   letter-spacing: 1.5px;
 }
+/*input[type=text] {
+  background-color: transparent;
+  zoom: 1;
+  color: white;
+  border: none;
+  border-bottom: 2px solid red;
+  color: #63717f;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+}
+input[type=text]:focus {
+  opacity: 25%
+  background-color: blue;
+}*/
+
+
+input[type=text] {
+  background-color: transparent;
+  flex:1;
+  padding:0.6em;
+  -webkit-border-radius: 25px;
+  -moz-border-radius: 25px;
+  border-radius: 25px;
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+  padding: 20px;
+  display: fixed;
+}
+input[type=text]:focus {
+    background-color: transparent;
+    border:4px solid yellow;
+    display: fixed;
+    margin-bottom: 10px;
+    color:white;
+    font-weight: bold;
+    font-style: italic;
+}
+#search-button {
+  margin-top: 30px;
+}
+.errors {
+  text-align: center;
+  
+}
+
 /*font-family: 'Alfa Slab One', cursive;
 font-family: 'Pacifico', cursive;
 font-family: 'Open Sans', sans-serif;*/
