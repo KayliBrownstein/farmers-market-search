@@ -38,11 +38,11 @@ class App extends Component {
   handleHeader(event) {
     if (this.state.attributes.length > 0) {
       this.setState({
-        resultsToggle: true,
+        resultsToggle: true
       })
     } else {
       this.setState({
-        resultsToggle: false,
+        resultsToggle: false
       })
     }
   }
