@@ -1,8 +1,10 @@
 import React from 'react';
+import BackButton from './BackButton';
 
 const MarketShowTile = (props) => {
   return(
     <div>
+      <BackButton />
       <h3>{props.marketname}</h3>
       <p><strong>Address:</strong> {props.address}</p>
       <a href={props.googleLink}>Google Maps</a>
