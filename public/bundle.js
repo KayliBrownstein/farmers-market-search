@@ -25831,12 +25831,17 @@
 
 	var _react2 = _interopRequireDefault(_react);
 
+	var _BackButton = __webpack_require__(228);
+
+	var _BackButton2 = _interopRequireDefault(_BackButton);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var MarketShowTile = function MarketShowTile(props) {
 	  return _react2.default.createElement(
 	    'div',
 	    null,
+	    _react2.default.createElement(_BackButton2.default, null),
 	    _react2.default.createElement(
 	      'h3',
 	      null,
@@ -25884,6 +25889,38 @@
 	};
 
 	exports.default = MarketShowTile;
+
+/***/ }),
+/* 228 */
+/***/ (function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _react = __webpack_require__(147);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRouter = __webpack_require__(159);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var BackButton = function BackButton() {
+	  return _react2.default.createElement(
+	    'div',
+	    null,
+	    _react2.default.createElement(
+	      'button',
+	      { id: 'back-button', onClick: _reactRouter.browserHistory.goBack },
+	      'Back'
+	    )
+	  );
+	};
+
+	exports.default = BackButton;
 
 /***/ })
 /******/ ]);
