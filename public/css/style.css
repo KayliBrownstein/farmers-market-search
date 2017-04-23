@@ -35,7 +35,7 @@
   font-family: 'Pacifico', cursive;
   font-size: 27px;
   color: #966a37;
-  text-shadow: 1px 1px #68462B;
+  /*text-shadow: 1px 1px #68462B;*/
 }
 .resultTiles {
   font-family: 'Open Sans', sans-serif;
