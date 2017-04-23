@@ -13,7 +13,7 @@ const ResultsContainer = (props) => {
   })
 
   return(
-    <div className='searchResults'>
+    <div className={props.parallaxId}>
       <h2 id= 'resultsHeading' className= {props.className}>Markets Near {props.place}</h2>
       <div id='colorStrip' />
 
