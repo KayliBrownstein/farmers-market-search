@@ -19804,6 +19804,7 @@
 	      errors: {},
 	      header: ''
 	    };
+
 	    _this.handleSearchChange = _this.handleSearchChange.bind(_this);
 	    _this.handleSearchSubmit = _this.handleSearchSubmit.bind(_this);
 	    _this.handleHeader = _this.handleHeader.bind(_this);
@@ -19860,22 +19861,23 @@
 	      var _this2 = this;
 
 	      event.preventDefault();
-	      this.validateZipChange(this.state.zip);
-	      fetch('http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=' + this.state.zip).then(function (response) {
-	        if (response.ok) {
-	          return response;
-	        } else {
-	          var errorMessage = response.status + ' (' + response.statusText + ')',
-	              error = new Error(errorMessage);
-	          throw error;
-	        }
-	      }).then(function (response) {
-	        return response.json();
-	      }).then(function (responseData) {
-	        _this2.setState({ attributes: responseData.results });
-	        _this2.handleClearForm();
-	        _this2.handleHeader();
-	      });
+	      if (this.validateZipChange(this.state.zip)) {
+	        fetch('http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=' + this.state.zip).then(function (response) {
+	          if (response.ok) {
+	            return response;
+	          } else {
+	            var errorMessage = response.status + ' (' + response.statusText + ')',
+	                error = new Error(errorMessage);
+	            throw error;
+	          }
+	        }).then(function (response) {
+	          return response.json();
+	        }).then(function (responseData) {
+	          _this2.setState({ attributes: responseData.results });
+	          _this2.handleClearForm();
+	          _this2.handleHeader();
+	        });
+	      }
 	    }
 	  }, {
 	    key: 'render',

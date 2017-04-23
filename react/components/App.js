@@ -11,8 +11,9 @@ class App extends Component {
       place: '',
       resultsToggle: false,
       errors: {},
-      header: ''
+      header: '',
     };
+
     this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
     this.handleHeader = this.handleHeader.bind(this);
@@ -37,11 +38,11 @@ class App extends Component {
   handleHeader(event) {
     if (this.state.attributes.length > 0) {
       this.setState({
-        resultsToggle: true
+        resultsToggle: true,
       })
     } else {
       this.setState({
-        resultsToggle: false
+        resultsToggle: false,
       })
     }
   }
@@ -59,7 +60,7 @@ class App extends Component {
 
   handleSearchSubmit(event) {
     event.preventDefault();
-    this.validateZipChange(this.state.zip);
+    if (this.validateZipChange(this.state.zip)){
     fetch(`http://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=${this.state.zip}`)
     .then(response => {
       if (response.ok) {
@@ -76,7 +77,7 @@ class App extends Component {
       this.handleClearForm();
       this.handleHeader();
     })
-  }
+  }}
 
   render() {
     let className;
