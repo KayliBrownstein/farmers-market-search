@@ -25,7 +25,7 @@ class App extends Component {
       this.setState({ errors: Object.assign(this.state.errors, newError) });
       return false;
     } else if ( !zip.match(/^\d{5}$/)) {
-      let newError = { zip: 'Zip should be 5 numbers' };
+      let newError = { zip: 'Zip should be five number characters' };
       this.setState({ errors: Object.assign(this.state.errors, newError) });
       return false;
     } else {
@@ -33,6 +33,7 @@ class App extends Component {
       delete errorState.zip;
       this.setState({ errors: errorState });
       return true;
+
     }
   }
   handleHeader(event) {
@@ -81,19 +82,22 @@ class App extends Component {
 
   render() {
     let className;
+    let parallaxId
     if (this.state.resultsToggle) {
       className = 'selected'
+      parallaxId = 'searchResults'
     } else {
       className = 'hidden'
+      parallaxId = 'noSearchResults'
     };
 
     let errorDiv;
     let errorItems;
     if (Object.keys(this.state.errors).length > 0) {
       errorItems = Object.values(this.state.errors).map(error => {
-        return(<li key={error}>{error}</li>)
+        return(<p key={error}>{error}</p>)
       });
-      errorDiv = <div className="callout alert">{errorItems}</div>
+      errorDiv = <div className="callout-alert">{errorItems}</div>
     }
 
     return(
@@ -111,6 +115,7 @@ class App extends Component {
         <div className='resultsContainer row'>
           <ResultsContainer
             className = {className}
+            parallaxId = {parallaxId}
             attributes={this.state.attributes}
             place={this.state.place}
           />

@@ -4,13 +4,13 @@ const SearchBar = (props) => {
   return(
     <div className= 'searchField'>
     <form onSubmit={props.onSubmit}>
-      <input className='zip-search'
+      <input className='field'
         type='text'
         placeholder='Enter zip code here...'
         onChange={props.onChange}
         value={props.zip}
       />
-      <input className='button custom'
+      <input id='search-button' className='button custom'
         type='submit'
         value='Search'
       />

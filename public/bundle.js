@@ -25486,7 +25486,7 @@
 	        this.setState({ errors: Object.assign(this.state.errors, newError) });
 	        return false;
 	      } else if (!zip.match(/^\d{5}$/)) {
-	        var _newError = { zip: 'Zip should be 5 numbers' };
+	        var _newError = { zip: 'Zip should be five number characters' };
 	        this.setState({ errors: Object.assign(this.state.errors, _newError) });
 	        return false;
 	      } else {
@@ -25550,10 +25550,13 @@
 	    key: 'render',
 	    value: function render() {
 	      var className = void 0;
+	      var parallaxId = void 0;
 	      if (this.state.resultsToggle) {
 	        className = 'selected';
+	        parallaxId = 'searchResults';
 	      } else {
 	        className = 'hidden';
+	        parallaxId = 'noSearchResults';
 	      };
 
 	      var errorDiv = void 0;
@@ -25561,14 +25564,14 @@
 	      if (Object.keys(this.state.errors).length > 0) {
 	        errorItems = Object.values(this.state.errors).map(function (error) {
 	          return _react2.default.createElement(
-	            'li',
+	            'p',
 	            { key: error },
 	            error
 	          );
 	        });
 	        errorDiv = _react2.default.createElement(
 	          'div',
-	          { className: 'callout alert' },
+	          { className: 'callout-alert' },
 	          errorItems
 	        );
 	      }
@@ -25596,6 +25599,7 @@
 	          { className: 'resultsContainer row' },
 	          _react2.default.createElement(_ResultsContainer2.default, {
 	            className: className,
+	            parallaxId: parallaxId,
 	            attributes: this.state.attributes,
 	            place: this.state.place
 	          })
@@ -25632,13 +25636,13 @@
 	    _react2.default.createElement(
 	      'form',
 	      { onSubmit: props.onSubmit },
-	      _react2.default.createElement('input', { className: 'zip-search',
+	      _react2.default.createElement('input', { className: 'field',
 	        type: 'text',
 	        placeholder: 'Enter zip code here...',
 	        onChange: props.onChange,
 	        value: props.zip
 	      }),
-	      _react2.default.createElement('input', { className: 'button custom',
+	      _react2.default.createElement('input', { id: 'search-button', className: 'button custom',
 	        type: 'submit',
 	        value: 'Search'
 	      })
@@ -25678,7 +25682,7 @@
 
 	  return _react2.default.createElement(
 	    'div',
-	    { className: 'searchResults' },
+	    { className: props.parallaxId },
 	    _react2.default.createElement(
 	      'h2',
 	      { id: 'resultsHeading', className: props.className },
